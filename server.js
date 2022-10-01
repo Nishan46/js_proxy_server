@@ -6,11 +6,8 @@ require('dotenv').config();
 
 const app = express();
 
-var Cors = {
-    origin:'http://localhost:5000'
-}
 
-app.use(cors(Cors));
+app.use(cors());
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 app.use(express.text());
