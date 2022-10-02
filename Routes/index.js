@@ -7,6 +7,7 @@ Router.post('/member-data',(req,res)=>{
         message:"You have access",
         host:`${req.hostname}${req.baseUrl}`
     })
+    console.clear();
     console.log(req.body)
 })
 
