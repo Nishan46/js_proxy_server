@@ -13,9 +13,7 @@ Router.post('/member-data', async (req,res)=>{
     const PostMember = async ()=>{
         try
         {
-            return await api.post(`/api/member-register/${process.env.API_KEY}`,req.body).catch((error)=>{
-                return {data:error.message , status:error.code};
-            })
+            return await api.post(`/api/member-register/${process.env.API_KEY}`,req.body)
         }
         catch(error)
         {
@@ -23,14 +21,22 @@ Router.post('/member-data', async (req,res)=>{
         }
     }
     const result = await PostMember();
-    if(result.data != undefined)
+    if(result != undefined)
     {
         const json = {
             message : result.data,
             code : result.status
         }
         await res.json(json)
+
+        console.clear();
+        console.log('\n\n\n\n\n\n');
         console.log(json)
+    }
+    else
+    {
+        res.status(503).send('hellow there')
+        console.log('server offline')
     }
 })
 module.exports = Router;
