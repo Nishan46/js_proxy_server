@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 app.use(express.text());
-app.use('/api', require('./Routes'));
+app.use('/api', require('./Routes/Member'));
 
 app.listen(PORT, () =>console.log(`server is listening on PORT:${PORT}`));
 
