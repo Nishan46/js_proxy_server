@@ -53,6 +53,27 @@ Router.post('/member-data', async (req,res)=>{
                 res.status(error.response.status).send(error.response.data)
             }
     })
+}).post('/mobile-data/:token', async (req,res) =>{
+    await api.post(`api/mobile-comming/${process.env.API_KEY}/${req.params.token}`, req.body)
+    .then(function(data){
+        console.clear()
+        console.log(`Request Accepted with code - ${data.status}` )
+        res.status(202).json(data.data)
+    })
+    .catch(function (error){
+        if(error.response === undefined)
+            {
+                console.clear()
+                console.log('Server Down !')
+                res.status(503).send('Server Down !')
+            }
+            else
+            {
+                console.clear()
+                console.log(`Request Field With code - ${error.response.status}`)
+                res.status(error.response.status).send(error.response.data)
+            }
+    })
 })
 
 module.exports = Router;
